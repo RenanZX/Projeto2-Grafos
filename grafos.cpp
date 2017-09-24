@@ -1,4 +1,4 @@
-#include "grafos.h"
+#include "grafos.hpp"
 
 Grafo::Grafo()
 {

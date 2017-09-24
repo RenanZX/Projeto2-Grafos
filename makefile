@@ -1,20 +1,14 @@
-#CPPFLAGS=-g -pthread -I/sw/include/root 
-#LDFLAGS=-g
-#LDLIBS=-L/sw/lib/root -lCore -lCint -lRIO -lNet -lHist -lGraf -lGraf3d -lGpad -lTree -lRint \
-       -lPostscript -lMatrix -lPhysics -lMathCore -lThread -lz -L/sw/lib -lfreetype -lz \
-       -Wl,-framework,CoreServices -Wl,-framework,ApplicationServices -pthread -Wl,-rpath,/sw/lib/root \
-       -lm -ldl
-all:Executar limpar
-Executar: main.o grafo.o dado.o
-	g++ -f -Wall -std=c++11 -o Projeto2 main.o grafo.o dado.o
+all:programa limpar
+programa: main.o grafos.o dados.o
+	g++ -o Projeto2 grafos.o dados.o main.o
 
-main.o:main.cpp grafos.cpp grafos.h dados.cpp dados.h
+main.o: main.cpp grafos.hpp dados.hpp
 	g++ -c main.cpp
 
-grafo.o:grafos.cpp grafos.h
+grafos.o: grafos.cpp grafos.hpp
 	g++ -c grafos.cpp
 
-dado.o:dados.cpp dados.h
+dados.o: dados.cpp dados.hpp
 	g++ -c dados.cpp
 
 limpar:

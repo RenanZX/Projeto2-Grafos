@@ -1,5 +1,5 @@
-#include "grafos.h"
-#include "dados.h"
+#include "grafos.hpp"
+#include "dados.hpp"
 
 int main(){
 	return 0;
