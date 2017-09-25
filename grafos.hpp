@@ -20,7 +20,7 @@ public:
 	Grafo();
 	~Grafo();
 	void InsereVertice(int valor);
-	void InsereAresta(int valor,int peso);
+	void InsereAresta(int v1,int v2,int peso);
 	void ImprimirGrafo();
 	void ImprimirTopologicamente();
 	void ImprimirCaminhoCritico();
