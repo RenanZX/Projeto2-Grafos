@@ -13,7 +13,7 @@ void Grafo::InsereVertice(int valor){
 
 }
 
-void Grafo::InsereAresta(int valor,int peso){
+void Grafo::InsereAresta(int v1,int v2,int peso){
 
 }
 
