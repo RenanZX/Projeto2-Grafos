@@ -10,13 +10,14 @@ class Vertice{
 private:
 	int valor;
 	int peso;
-	std::vector<Vertice> listaAdjArest;
+	std::vector<int> listaAdjArest;
 };
 
 class Grafo{
-private:
-	std::vector<Vertice> lista_v;
+//private:
+	///std::vector<Vertice> lista_v;
 public:
+	vector<pair<int, int> listaAdj;
 	Grafo();
 	~Grafo();
 	void InsereVertice(int valor);
