@@ -65,20 +65,25 @@ Caminho Grafo::getMaiorCaminho(int v)throw(runtime_error)
 	maiorCaminho.path.push_back(v);
 	maiorCaminho.somapesos = 0;
 
-	while((i!=lista_v.size())&&(lista_v[i].valor == v)){
+	while((i!=lista_v.size())&&(lista_v[i].valor != v)){
 		i++;
 	}
 	if(i == lista_v.size()){
 		throw runtime_error("Impossivel Calcular Maior Caminho");
 	}
+
 	int j=0;
-	while(j!=lista_v[i].listaAdjArest.size()){
-		candidatoMaior = getMaiorCaminho(lista_v[i].listaAdjArest[j].valor);
-		candidatoMaior.somapesos+=lista_v[i].listaAdjArest[j].peso;
-		if(candidatoMaior.somapesos > maiorCaminho_v.somapesos){
-			maiorCaminho_v = candidatoMaior;
+	if(!lista_v[i].listaAdjArest.empty()){
+		for(j=0;j<lista_v[i].listaAdjArest.size();j++){
+			try{
+				candidatoMaior = getMaiorCaminho(lista_v[i].listaAdjArest[j].valor);
+				candidatoMaior.somapesos+=lista_v[i].listaAdjArest[j].peso;
+			}catch(runtime_error &e){
+			}
+			if(candidatoMaior.somapesos > maiorCaminho_v.somapesos){
+				maiorCaminho_v = candidatoMaior;
+			}
 		}
-		j++;
 	}
 	maiorCaminho.path.insert(maiorCaminho.path.end(),maiorCaminho_v.path.begin(),maiorCaminho_v.path.end());
 	maiorCaminho.somapesos+=maiorCaminho_v.somapesos;
@@ -143,8 +148,9 @@ void Grafo::ImprimirTopologicamente()
 {
 	Ordem_Topologica();
 	cout << "****ORDEM TOPOLOGICA*****" << endl;
-	for(int i=0;i<Ordenado.size();i++){
-		cout << Ordenado[i] << "->";
+	cout << Ordenado[0];
+	for(int i=1;i<Ordenado.size();i++){
+		cout << "->" << Ordenado[i];
 	}
 	cout << endl;
 }
@@ -156,8 +162,9 @@ void Grafo::ImprimirCaminhoCritico()
 	try{
 		caminhoCritico = getMaiorCaminho(lista_v[0].valor);
 		cout << "****CAMINHO CRITICO*****" << endl;
-		for(int i = 0;i < caminhoCritico.path.size();i++){
-			cout << caminhoCritico.path[i] << ",";
+		cout << caminhoCritico.path[0];
+		for(int i = 1;i < caminhoCritico.path.size();i++){
+			cout << "," << caminhoCritico.path[i];
 		}
 		cout << endl;
 	}catch(runtime_error &e){
