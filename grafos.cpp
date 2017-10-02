@@ -171,7 +171,7 @@ void Grafo::ImprimirCaminhoCritico()
 		cout << "****CAMINHO CRITICO*****" << endl;
 		cout << caminhoCritico.path[0];
 		for(int i = 1;i < caminhoCritico.path.size();i++){
-			cout << "," << caminhoCritico.path[i];
+			cout << "<-" << caminhoCritico.path[i];
 		}
 		cout << endl;
 	}catch(runtime_error &e){
