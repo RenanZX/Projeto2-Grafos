@@ -157,10 +157,17 @@ void Grafo::ImprimirTopologicamente()
 
 void Grafo::ImprimirCaminhoCritico()
 {
+	Caminho candidato;
 	Caminho caminhoCritico;
+	caminhoCritico.somapesos = 0;
 
 	try{
-		caminhoCritico = getMaiorCaminho(lista_v[0].valor);
+		for(int i = 0;i<lista_v.size();i++){
+			candidato = getMaiorCaminho(lista_v[i].valor);
+			if(candidato.somapesos > caminhoCritico.somapesos){
+				caminhoCritico = candidato;
+			}
+		}
 		cout << "****CAMINHO CRITICO*****" << endl;
 		cout << caminhoCritico.path[0];
 		for(int i = 1;i < caminhoCritico.path.size();i++){
